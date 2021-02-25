@@ -1,0 +1,34 @@
+
+.experience-bar-container {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.experience-bar-container span {
+    color: var(--grey-text);
+    font-size: 14px;
+    line-height: 16.94px;
+}
+
+.experience-bar {
+    background-color: var(--gray-line);
+    width: 90%;
+    height: 4px;
+    border-radius: 20px;
+}
+
+.bar {
+    background-color: var(--green);
+    width: 50%;
+    max-width: 100%;
+    height: 4px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.current-experience {
+    margin-top: 8px;
+}

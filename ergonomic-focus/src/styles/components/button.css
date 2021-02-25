@@ -1,0 +1,33 @@
+.button {
+    height: 80px;
+    width: 100%;
+    left: 240px;
+    top: 607px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-btn-icon {
+    margin: 0px 10px;
+    padding-top: 5px;
+}
+
+.button.blue {
+    background-color: var(--secondary-blue);
+}
+
+.button.blue:hover {
+    background-color: var(--primary-blue);
+}
+
+.btn-text {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: var(--white);
+}

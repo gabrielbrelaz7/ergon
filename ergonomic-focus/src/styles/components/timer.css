@@ -1,0 +1,93 @@
+.challenges-number-container {
+    width: 100%;
+    height: 44px;
+    border-bottom: 3.5px solid var(--gray-line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.challenges-number-container span {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: var(--grey-text);
+}
+
+.timer-container {
+    height: 144px;
+    display: flex;
+}
+
+.container-numbers {
+    height: 100%;
+    width: 176px;
+    background-color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.container-middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 37px;
+    height: 100%;
+}
+
+.number {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grey-title);
+    text-align: center;
+    font-size: 120px;
+    line-height: 100px;
+    font-weight: 600;
+}
+
+.divisor {
+    background-color: var(--main-bg-color);
+    height: 100%;
+    width: 5px;
+}
+.timer-container {
+    height: 144px;
+    display: flex;
+}
+
+.container-numbers {
+    height: 100%;
+    width: 176px;
+    background-color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.container-middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 37px;
+    height: 100%;
+}
+
+.number {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grey-title);
+    text-align: center;
+    font-size: 120px;
+    line-height: 100px;
+    font-weight: 600;
+}

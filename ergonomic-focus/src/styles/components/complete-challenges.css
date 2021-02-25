@@ -1,0 +1,25 @@
+.challenges-number-container {
+    width: 100%;
+    height: 44px;
+    border-bottom: 3.5px solid var(--gray-line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.challenges-number-container span {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: var(--grey-text);
+}
+
+.divisor {
+    background-color: var(--main-bg-color);
+    height: 100%;
+    width: 5px;
+}
+
