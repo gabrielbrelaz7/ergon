@@ -16,6 +16,7 @@
 
 .button.blue {
     background-color: var(--secondary-blue);
+    margin-top: 25px;
 }
 
 .button.blue:hover {

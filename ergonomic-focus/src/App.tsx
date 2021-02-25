@@ -4,7 +4,6 @@ import { ExperienceBar } from "./components/ExperienceBar";
 import { Profile } from "./components/Profile";
 import { CompleteChallenges } from "./components/CompleteChallenges";
 import { Timer } from "./components/Timer";
-import { Button } from "./components/Button";
 
 
 import "./styles/global.css";
@@ -23,8 +22,6 @@ const App = () => {
           <CompleteChallenges />
 
           <Timer />
-
-          <Button />
     
           </div>
         </div>
