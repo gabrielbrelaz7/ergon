@@ -1,23 +1,230 @@
 /* TODO: Declaring colors variables */
 
 :root {
+    --main-bg-color: #F2F3F5;
+    --gray-line: #DCDDE0;
+    --grey-text: #666666;
+    --grey-title: #2E384D;
+    --red: #E83F5B;
+    --green: #4CD62B;
+    --primary-blue: #4953B8;
+    --secondary-blue: #5965E0;
+    --white: #FFF;
 }
 
 
 /* TODO: Styling CSS to components by design for FIGMA, can to use google fonts and variable colors*/
 
-.experience-bar{
+body {
+    margin: 0px;
+    font-family: Tahoma, Verdana, sans-serif;
+}
 
+.experience-bar-container {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.experience-bar-container span {
+    color: var(--grey-text);
+    font-size: 14px;
+    line-height: 16.94px;
+}
+
+.experience-bar {
+    background-color: var(--gray-line);
+    width: 90%;
+    height: 4px;
+    border-radius: 20px;
+}
+
+.bar {
+    background-color: var(--green);
+    width: 50%;
+    max-width: 100%;
+    height: 4px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.current-experience {
+    margin-top: 8px;
 }
 
 .container {
-
+    padding: 0px 240px;
+    height: 100vh;
+    background-color: var(--main-bg-color);
 }
 
-.experience-bar .div .div {
-
+.container-content {
+    padding: 50px 0px;
+    height: calc(100vh - 150px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-span.current-experience {
-    
+.card {
+    height: 500px;
+    width: 50%;
+    background-color: var(--white);
+}
+
+.card.invisible {
+    height: 500px;
+    width: 50%;
+    background-color: var(--main-bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 50px;
+}
+
+.container-info {
+    width: 389px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* create component */
+.container-user-info {
+    height: 88px;
+    display: flex;
+    align-items: center;
+}
+
+.container-name-and-level {
+    padding-left: 25px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* create component */
+.picture {
+    height: 88px;
+    width: 88px;
+    border-radius: 44px;
+    background-color: var(--primary-blue);
+}
+
+/* create component */
+.name {
+    font-size: 24px;
+    line-height: 29.05px;
+    font-weight: 600;
+    color: var(--grey-title);
+}
+
+.container-user-level {
+    margin-top: 10px;
+}
+
+.user-level {
+    margin-left: 10px;
+    font-size: 16px;
+    line-height: 13.36px;
+    font-weight: 400;
+    color: var(--grey-text);
+}
+
+/* create component */
+.challenges-number-container {
+    width: 100%;
+    height: 44px;
+    border-bottom: 3.5px solid var(--gray-line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.challenges-number-container span {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: var(--grey-text);
+}
+
+.timer-container {
+    height: 144px;
+    display: flex;
+}
+
+.container-numbers {
+    height: 100%;
+    width: 176px;
+    background-color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.container-middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 37px;
+    height: 100%;
+}
+
+.number {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grey-title);
+    text-align: center;
+    font-size: 120px;
+    line-height: 100px;
+    font-weight: 600;
+}
+
+.divisor {
+    background-color: var(--main-bg-color);
+    height: 100%;
+    width: 5px;
+}
+
+.button {
+    height: 80px;
+    width: 100%;
+    left: 240px;
+    top: 607px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-btn-icon {
+    margin: 0px 10px;
+    padding-top: 5px;
+}
+
+.button.blue {
+    background-color: var(--secondary-blue);
+}
+
+.button.blue:hover {
+    background-color: var(--primary-blue);
+}
+
+.btn-text {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: var(--white);
 }
