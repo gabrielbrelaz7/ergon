@@ -1,34 +1,69 @@
 .button {
-    height: 80px;
-    width: 100%;
-    left: 240px;
-    top: 607px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 80px;
+  width: 100%;
+  left: 240px;
+  top: 607px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container-btn-icon {
-    margin: 0px 10px;
-    padding-top: 5px;
+  margin: 0px 10px;
+  padding-top: 5px;
 }
 
 .button.blue {
-    background-color: var(--secondary-blue);
-    margin-top: 25px;
+  color: var(--white);
+  background-color: var(--secondary-blue);
+  margin-top: 25px;
 }
 
 .button.blue:hover {
-    background-color: var(--primary-blue);
+  color: var(--white);
+  background-color: var(--primary-blue);
+}
+
+.button.white {
+  color: var(--grey-text);
+  background-color: var(--white);
+  margin-top: 25px;
+}
+
+.button.white svg {
+  fill: var(--grey-text);
+}
+
+.button.white:hover {
+  color: var(--white);
+  background-color: var(--red);
+}
+
+.button.white:hover svg {
+  fill: var(--white);
+}
+
+.button.white-greenb {
+  background-color: var(--white);
+  border-bottom: 2px solid var(--green);
+}
+
+.button.red {
+  color: var(--white);
+  background-color: var(--red);
+}
+
+.button.green {
+  color: var(--white);
+  background-color: var(--green);
 }
 
 .btn-text {
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: var(--white);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: center;
 }
