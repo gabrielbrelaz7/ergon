@@ -5,29 +5,29 @@ import { Profile } from "./components/Profile";
 import { CompleteChallenges } from "./components/CompleteChallenges";
 import { Timer } from "./components/Timer";
 
-
 import "./styles/global.css";
-
+import { ComponentExample } from "./components/ComponentExamples";
 
 const App = () => {
   return (
-    <div className="container">
-      <ExperienceBar />
-      <div className="container-content">
-        <div className="card invisible">
-          <div className="container-info">
+    <div>
+      <div className="container">
+        <ExperienceBar />
+        <div className="container-content">
+          <div className="card invisible">
+            <div className="container-info">
+              <Profile />
 
-          <Profile />
+              <CompleteChallenges />
 
-          <CompleteChallenges />
-
-          <Timer />
-    
+              <Timer />
+            </div>
           </div>
-        </div>
 
-        <div className="card" />
+          <div className="card" />
+        </div>
       </div>
+      <ComponentExample />
     </div>
   );
 };
