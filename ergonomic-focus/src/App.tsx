@@ -7,9 +7,12 @@ import { Timer } from "./components/Timer";
 
 import "./styles/global.css";
 import { ComponentExample } from "./components/ComponentExamples";
+import { ChallengeBox } from "./components/ChallengeBox";
+import { ChallengesProvider } from "./Contexts/ChallengesContext";
 
 const App = () => {
   return (
+    <ChallengesProvider>
     <div>
       <div className="container">
         <ExperienceBar />
@@ -24,12 +27,21 @@ const App = () => {
             </div>
           </div>
 
-          <div className="card" />
+          <div className="card">
+              
+                <ChallengeBox />
+            </div>
+
+        
+
         </div>
       </div>
       <ComponentExample />
     </div>
-  );
+
+  </ChallengesProvider>
+
+)
 };
 
 export default App;
