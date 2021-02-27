@@ -5,8 +5,10 @@ import { ReactComponent as RightArrow } from "../assets/images/right-arrow-icon.
 import { Button } from "./Button";
 
 
-export const Timer = () => {
+let countDownTimeOut : NodeJS.Timeout;
 
+
+export const Timer = () => {
 
 const now = new Date();
 
@@ -15,7 +17,7 @@ const minutes = now.getMinutes();
 const seconds = now.getSeconds();
 
 const [timeSecond, setTimeSecond] = useState(seconds)
-const [active, setActive] = useState(false)
+const [isActive, setIsActive] = useState(false)
 
 const [hourLeft, hourRight] = String(hours)
     .padStart(2, '0')
@@ -29,18 +31,25 @@ const [secondLeft, secondRight] = String(seconds)
 
 
 function startCoutDown() {
-    setActive(true);
+    setIsActive(true);
 }
+
+
+function resetCoutDown() {
+  setIsActive(false);
+  clearTimeout(countDownTimeOut);
+  setTimeSecond(0);
+}   
 
 useEffect(() => {
 
-    if (active && timeSecond < 59) {
-        setInterval(() => {
+    if (isActive && timeSecond < 59) {
+      countDownTimeOut = setTimeout(() => {
             setTimeSecond(timeSecond + 1)
         }, 1000)
     }
 
-}, [active, timeSecond])
+}, [isActive, timeSecond])
 
   return (
     <div>
@@ -68,12 +77,24 @@ useEffect(() => {
         </div>
       </div>
 
+      {isActive? (
+
       <Button
-        onClick={startCoutDown}
-        color="blue"
-        text="Iniciar um ciclo"
-        icon={<RightArrow />}
-      />
+          onClick={resetCoutDown}
+          color="blue"
+          text={"Encerrar o ciclo"}
+          icon={<RightArrow />
+      }/>
+
+      ):
+
+      <Button
+          onClick={startCoutDown}
+          color="blue"
+          text={"Iniciar um ciclo"}
+          icon={<RightArrow />
+      }/>
+    }
     </div>
   );
 };
