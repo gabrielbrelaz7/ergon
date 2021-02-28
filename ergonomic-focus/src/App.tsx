@@ -1,47 +1,49 @@
 import React from "react";
 
-import { ExperienceBar } from "./components/ExperienceBar";
-import { Profile } from "./components/Profile";
-import { CompleteChallenges } from "./components/CompleteChallenges";
-import { Timer } from "./components/Timer";
+import {ExperienceBar} from "./components/ExperienceBar";
+import {Profile} from "./components/Profile";
+import {CompleteChallenges} from "./components/CompleteChallenges";
+import {Timer} from "./components/Timer";
 
 import "./styles/global.css";
-import { ComponentExample } from "./components/ComponentExamples";
-import { ChallengeBox } from "./components/ChallengeBox";
-import { ChallengesProvider } from "./Contexts/ChallengesContext";
+import {ComponentExample} from "./components/ComponentExamples";
+import {ChallengeBox} from "./components/ChallengeBox";
+import {ChallengesProvider} from "./Contexts/ChallengesContext";
+import {TimerProvider} from "./Contexts/TimerContext";
 
 const App = () => {
-  return (
-    <ChallengesProvider>
-    <div>
-      <div className="container">
-        <ExperienceBar />
-        <div className="container-content">
-          <div className="card invisible">
-            <div className="container-info">
-              <Profile />
+    return (
 
-              <CompleteChallenges />
+        <ChallengesProvider>
+            <TimerProvider>
+                <div>
+                    <div className="container">
+                        <ExperienceBar/>
+                        <div className="container-content">
+                            <div className="card invisible">
+                                <div className="container-info">
+                                    <Profile/>
 
-              <Timer />
-            </div>
-          </div>
+                                    <CompleteChallenges/>
 
-          <div className="card">
-              
-                <ChallengeBox />
-            </div>
+                                    <Timer/>
+                                </div>
+                            </div>
 
-        
+                            <div className="card">
 
-        </div>
-      </div>
-      <ComponentExample />
-    </div>
+                                <ChallengeBox/>
+                            </div>
 
-  </ChallengesProvider>
+                        </div>
+                    </div>
+                    <ComponentExample/>
+                </div>
+            </TimerProvider>
 
-)
+        </ChallengesProvider>
+
+    )
 };
 
 export default App;

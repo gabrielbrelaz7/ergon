@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../styles/components/profile.css";
 import { ReactComponent as Up } from "../assets/images/up-icon.svg";
+import { ChallengesContext } from "../Contexts/ChallengesContext";
 
 
 export const Profile = () => {
+
+  const {level} = useContext(ChallengesContext);
+
   return (
     <div className="container-user-info">
               <img
@@ -17,7 +21,7 @@ export const Profile = () => {
                 <span className="name">User name</span>
                 <div className="container-user-level">
                   <Up />
-                  <span className="user-level">Level 1</span>
+                  <span className="user-level">Level {level}</span>
                 </div>
               </div>
     </div>

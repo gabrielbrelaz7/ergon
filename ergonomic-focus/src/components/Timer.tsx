@@ -1,43 +1,25 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useContext} from "react";
 import "../styles/components/timer.css";
 import "../styles/components/button.css";
 import {ReactComponent as RightArrow} from "../assets/images/right-arrow-icon.svg";
 import {Button} from "./Button";
-import { ChallengesContext } from "../Contexts/ChallengesContext";
+import { TimerContext } from "../Contexts/TimerContext";
 
-let countDownTimeOut: NodeJS.Timeout;
 
 export const Timer = () => {
 
-
-    // Challenges 
-
-    const {startNewChallenge} = useContext(ChallengesContext)
-
-  
-
-    // Timer Focus
-
-    const [timeFocus, setTimeFocus] = useState(0)
-
-    const focusSeconds = timeFocus % 60;
-    const focusMinutes = Math.floor(timeFocus / 60);
-    const focusHours = Math.floor(timeFocus / 3600)
-
-    const [isActiveFocus, setIsActiveFocus] = useState(false)
-
-    const [hasFinished, setHasFinished] = useState(false);
-
-    // Timer Now
-
-    const now = new Date();
-
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
-
-    const [timeSecond, setTimeSecond] = useState(seconds)
-    const [isActive, setIsActive] = useState(false)
+    const {
+        hours,
+        minutes,
+        seconds,
+        focusHours,
+        focusMinutes,
+        focusSeconds,
+        hasFinished,
+        resetCoutDown,
+        isActiveFocus,
+        startCoutDown
+    } = useContext(TimerContext);
 
     const [hourLeft, hourRight] = String(hours)
         .padStart(2, '0')
@@ -65,46 +47,6 @@ export const Timer = () => {
             '0'
         )
         .split('')
-
-    function startCoutDown() {
-        setIsActive(true);
-        setIsActiveFocus(true);
-    }
-
-    function resetCoutDown() {
-        // setIsActive(false);
-        clearTimeout(countDownTimeOut);
-        setIsActiveFocus(false);
-
-    }
-
-    useEffect(() => {
-
-        if (isActive && timeSecond < 59) {
-            countDownTimeOut = setTimeout(() => {
-                setTimeSecond(timeSecond + 1)
-            }, 1000)
-        }
-
-        // else if ( isActive &&) { }
-
-    }, [isActive, timeSecond])
-
-    useEffect(() => {
-
-        if (isActiveFocus && timeFocus < 5) {
-            countDownTimeOut = setTimeout(() => {
-                setTimeFocus(timeFocus + 1)
-            }, 1000)
-        } else if (isActiveFocus && timeFocus === 5) {
-            setHasFinished(true);
-            setIsActiveFocus(false);
-            startNewChallenge();
-        }
-
-    }, [isActiveFocus, timeFocus, startNewChallenge])
-
-    // else if ( isActive &&) { }
 
     return (
 

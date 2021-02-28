@@ -10,10 +10,22 @@ import {ReactComponent as ExerciseIcon} from "../assets/images/exercise-icon.svg
 import {Button} from "./Button";
 import {useContext} from "react";
 import {ChallengesContext} from "../Contexts/ChallengesContext";
+import { TimerContext } from "../Contexts/TimerContext";
 
 export const ChallengeBox = () => {
 
-    const {activeChallenge, resetChallenge} = useContext(ChallengesContext);
+    const {activeChallenge, resetChallenge, completeChallenge} = useContext(ChallengesContext);
+    const {resetCoutDown} = useContext(TimerContext);
+
+
+    function handleChallengeSuccessed() {
+        completeChallenge();
+        resetCoutDown();
+    }
+
+    function handleChallengeFailed() {
+        resetChallenge()
+    }
 
     return (
 
@@ -42,8 +54,8 @@ export const ChallengeBox = () => {
                                     </span>
                                 </div>
                                 <div className="container-btns">
-                                    <Button onClick={resetChallenge} color="red" text="Falhei"/>
-                                    <Button onClick={() => {}} color="green" text="Completei"/>
+                                    <Button onClick={handleChallengeFailed} color="red" text="Falhei"/>
+                                    <Button onClick={handleChallengeSuccessed} color="green" text="Completei"/>
                                 </div>
 
                             </div>
