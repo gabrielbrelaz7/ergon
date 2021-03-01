@@ -10,40 +10,72 @@ import {ComponentExample} from "./components/ComponentExamples";
 import {ChallengeBox} from "./components/ChallengeBox";
 import {ChallengesProvider} from "./Contexts/ChallengesContext";
 import {TimerProvider} from "./Contexts/TimerContext";
+import { BrowserRouter, Route } from "react-router-dom";
+import { Register } from "./components/Register";
+import { Login } from "./components/Login";
+import { AuthProvider } from "./Contexts/AuthContext";
+import { PrivateRoute } from "./auth/PrivateRoute";
 
-const App = () => {
+// import * as firebase from 'firebase';
+
+const HomePage = () => {
+
     return (
 
-        <ChallengesProvider>
-            <TimerProvider>
-                <div>
-                    <div className="container">
-                        <ExperienceBar/>
-                        <div className="container-content">
-                            <div className="card invisible">
-                                <div className="container-info">
-                                    <Profile/>
+        <TimerProvider>
+            <div>
+                <div className="container">
+                    <ExperienceBar/>
+                    <div className="container-content">
+                        <div className="card invisible">
+                            <div className="container-info">
+                                <Profile/>
 
-                                    <CompleteChallenges/>
+                                <CompleteChallenges/>
 
-                                    <Timer/>
-                                </div>
+                                <Timer/>
                             </div>
-
-                            <div className="card">
-
-                                <ChallengeBox/>
-                            </div>
-
                         </div>
+
+                        <div className="card">
+
+                            <ChallengeBox/>
+                        </div>
+
                     </div>
-                    <ComponentExample/>
                 </div>
-            </TimerProvider>
+                <ComponentExample/>
+            </div>
+        </TimerProvider>
+
+    )
+}
+
+const App = () => {
+
+    return (
+
+        <AuthProvider>
+
+        <ChallengesProvider>
+
+                <BrowserRouter>
+
+                    <PrivateRoute exact path="/" component={HomePage} />
+                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/login" component={Login} />
+
+                </BrowserRouter>
 
         </ChallengesProvider>
 
+        </AuthProvider>
+
     )
+    
 };
+
+
+
 
 export default App;
