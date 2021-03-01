@@ -1,30 +1,28 @@
-import { useEffect, useState } from "react";
-import { firebaseConfig } from "../auth/config";
-
-// interface User {
-
-// }
+import { createContext, ReactNode, useEffect, useState } from "react";
+import { authConfig } from "../auth/config";
 
 
 interface AuthContextData {
-    username: string;
+    user: any;
 }
 
 
+type NewType = ReactNode;
+
 interface AuthProviderProps{
-    children: ReactNode;
+    children: NewType;
 }
 
 export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children } : AuthProviderProps) {
 
-    const [username, setUserAuth] = useState({} as AuthContextData);
+    const [user, setUserAuth] = useState({} as AuthContextData);
     const [waiting, setWaiting] = useState(true);
 
     useEffect(() => {
 
-        firebaseConfig.authDomain().onAuthStateChanged((user) => {
+        authConfig.auth().onAuthStateChanged((user:any) => {
             setUserAuth(user);
             setWaiting(false)
         });
@@ -39,7 +37,7 @@ export function AuthProvider({ children } : AuthProviderProps) {
 
         <AuthContext.Provider 
             value={{
-                username
+                user
                 
                 }}>
         

@@ -1,6 +1,4 @@
-import { firebaseConfig } from "../auth/config";
-
-
+import { authConfig } from "../auth/config";
 
 export const navMenu = () => {
     return (
@@ -12,7 +10,7 @@ export const navMenu = () => {
                 Timer Focus
             </div>
             <div>
-                <button onClick={firebaseConfig.authDomain().signOut()}>Login/Logout</button>
+                <button onClick={authConfig.auth().signOut}>Login/Logout</button>
             </div>
         </div>
     );

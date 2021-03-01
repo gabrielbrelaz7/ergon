@@ -1,36 +1,31 @@
-import { useContext } from "react";
-import { Redirect } from "react-router";
+import { useCallback, useContext } from "react";
+import { Redirect, withRouter } from "react-router";
+import { authConfig } from "../auth/config";
 import { AuthContext } from "../Contexts/AuthContext";
-
-export const Login = withRouter(({history}) => {
     
 
+    export const Login = ({ history }:any) => {
+      
         const loginUser = useCallback(
-            async (event) => {
-    
-                event.preventDefault();
-    
-                const {email, password} = event.target.elements;
-    
-                try {
-                    await firebaseConfig
-                        .auth()
-                }       .signInWithEmailAndPassword(email.value, password.value);
-    
-                history.push('/');
-    
+          async (event) => {
+            event.preventDefault();
+            const { email, password } = event.target.elements;
+      
+            try {
+              await authConfig
+                .auth()
+                .signInWithEmailAndPassword(email.value, password.value);
+              history.push('/');
+            } catch (error) {
+              console.log(error);
+              alert('Something went wrong. Did you put your email and password?');
             }
-    
-            catch (error) {
-                console.log(error);
-            }},
-    
-            [history], 
-    
+          },
+          [history],
         );
-
-        const {username} = useContext(AuthContext) {
-            return <Redirect to="/" />
+        const { user } = useContext(AuthContext);
+        if (user) {
+          return <Redirect to="/" />;
         }
     
         
@@ -51,4 +46,6 @@ export const Login = withRouter(({history}) => {
     
     </div>
         );
-        });
+        };
+
+        export default withRouter(Login)
