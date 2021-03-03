@@ -1,4 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { authConfig } from "../auth/config";
+import { AuthContext } from "./AuthContext";
 import { ChallengesContext } from "./ChallengesContext";
 
 interface TimerContextData {
@@ -13,6 +15,7 @@ interface TimerContextData {
     isActiveFocus: boolean
     startCoutDown: () =>void;
     resetCoutDown: () => void;
+
 }
 
 interface TimerProvidersProps{
@@ -28,7 +31,9 @@ let countDownTimeOut: NodeJS.Timeout;
 export function TimerProvider({ children } : TimerProvidersProps) {
 
     // Challenges 
-    const {startNewChallenge} = useContext(ChallengesContext)
+    const {startNewChallenge} = useContext(ChallengesContext);
+
+    const {user} = useContext(AuthContext);
 
     // Timer Focus
 
@@ -42,31 +47,55 @@ export function TimerProvider({ children } : TimerProvidersProps) {
 
     const [hasFinished, setHasFinished] = useState(false);
 
-    // Timer Now
 
-    const now = new Date();
-
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
-
-    const [timeSecond, setTimeSecond] = useState(seconds)
     const [isActive, setIsActive] = useState(false)
+
+
+                // Timer Now
+
+                const now = new Date();
+
+                const hours = now.getHours();
+                const minutes = now.getMinutes();
+                const seconds = now.getSeconds();
 
 
         function startCoutDown() {
             setIsActive(true);
             setIsActiveFocus(true);
+
+        // Timer Now
+
+        const now = new Date();
+
+        const day = now.getDate();
+        const moth = now.getMonth()+1; 
+        const year = now.getFullYear();
+
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+
+        const date = (moth + "/" + day + "/" + year)
+        const datetime = (hours + ":" + minutes)
+
+
+        const insertDB = {
+            username: user.email,
+            datetimeStart: datetime,
+            datetimeEnd: "",
+            date: date,
+        };
+
+
+        authConfig.database().ref(`timerDay/${btoa(insertDB.username)}`)
+
+        .push(insertDB)
+
         }
-    
-        function resetCoutDown() {
-            // setIsActive(false);
-            clearTimeout(countDownTimeOut);
-            setIsActiveFocus(false);
-            setHasFinished(false);
-    
-        }
-    
+
+        const [timeSecond, setTimeSecond] = useState(seconds)
+
+
         useEffect(() => {
     
             if (isActive && timeSecond < 59) {
@@ -78,6 +107,25 @@ export function TimerProvider({ children } : TimerProvidersProps) {
             // else if ( isActive &&) { }
     
         }, [isActive, timeSecond])
+    
+        function resetCoutDown() {
+
+            console.log(timeFocus);
+
+            // setIsActive(false);
+            clearTimeout(countDownTimeOut);
+            setIsActiveFocus(false);
+            setHasFinished(false);
+
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const datetime = (hours + ":" + minutes)
+
+            console.log(user)
+            console.log(datetime)
+
+        }
+
     
         useEffect(() => {
     
