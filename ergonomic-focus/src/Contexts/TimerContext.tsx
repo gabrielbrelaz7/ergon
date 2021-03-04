@@ -139,9 +139,16 @@ export function TimerProvider({ children } : TimerProvidersProps) {
                     setTimeFocus(timeFocus + 1)
                 }, 1000)
 
+<<<<<<< HEAD
                 if (isActiveFocus && (timeFocus === 5 
                     || timeFocus === 10 
                     || timeFocus === 15)) {
+=======
+                if (isActiveFocus && (
+                    timeFocus === 5 || 
+                    timeFocus === 10 || 
+                    timeFocus === 15) ) {
+>>>>>>> ed8afda8193e1af1b191638bbe852e3f1c983d45
                     setHasFinished(true);
                     setIsActiveFocus(false);
                     startNewChallenge();
