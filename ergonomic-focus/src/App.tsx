@@ -1,15 +1,15 @@
 import React from "react";
 
-import {ExperienceBar} from "./components/ExperienceBar";
-import {Profile} from "./components/Profile";
-import {CompleteChallenges} from "./components/CompleteChallenges";
-import {Timer} from "./components/Timer";
+import { ExperienceBar } from "./components/ExperienceBar";
+import { Profile } from "./components/Profile";
+import { CompleteChallenges } from "./components/CompleteChallenges";
+import { Timer } from "./components/Timer";
 
 import "./styles/global.css";
-import {ComponentExample} from "./components/ComponentExamples";
-import {ChallengeBox} from "./components/ChallengeBox";
-import {ChallengesProvider} from "./Contexts/ChallengesContext";
-import {TimerProvider} from "./Contexts/TimerContext";
+import { ComponentExample } from "./components/ComponentExamples";
+import { ChallengeBox } from "./components/ChallengeBox";
+import { ChallengesProvider } from "./Contexts/ChallengesContext";
+import { TimerProvider } from "./Contexts/TimerContext";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Register } from "./components/Register";
 import { Login } from "./components/Login";
@@ -19,63 +19,48 @@ import { PrivateRoute } from "./auth/PrivateRoute";
 // import * as firebase from 'firebase';
 
 const HomePage = () => {
+  return (
+    <TimerProvider>
+      <div>
+        <div className="container">
+          <ExperienceBar />
+          <div className="container-content">
+            <div className="card invisible">
+              <div className="container-info">
+                <Profile />
 
-    return (
+                <CompleteChallenges />
 
-        <TimerProvider>
-            <div>
-                <div className="container">
-                    <ExperienceBar/>
-                    <div className="container-content">
-                        <div className="card invisible">
-                            <div className="container-info">
-                                <Profile/>
-
-                                <CompleteChallenges/>
-
-                                <Timer/>
-                            </div>
-                        </div>
-
-                        <div className="card">
-
-                            <ChallengeBox/>
-                        </div>
-
-                    </div>
-                </div>
-                <ComponentExample/>
+                <Timer />
+              </div>
             </div>
-        </TimerProvider>
 
-    )
-}
-
-const App = () => {
-
-    return (
-
-        <AuthProvider>
-
-        <ChallengesProvider>
-
-                <BrowserRouter>
-
-                    <PrivateRoute exact path="/" component={HomePage} />
-                    <Route exact path="/register" component={Register} />
-                    <Route exact path="/login" component={Login} />
-
-                </BrowserRouter>
-
-        </ChallengesProvider>
-
-        </AuthProvider>
-
-    )
-    
+            <div className="card">
+              <ChallengeBox />
+            </div>
+          </div>
+        </div>
+        <ComponentExample />
+      </div>
+    </TimerProvider>
+  );
 };
 
-
-
+const App = () => {
+  return (
+    <AuthProvider>
+      <ChallengesProvider>
+        <BrowserRouter>
+          <div className="container-project-name">
+            <span>Ergonimic Focus</span>
+          </div>
+          <PrivateRoute exact path="/" component={HomePage} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+        </BrowserRouter>
+      </ChallengesProvider>
+    </AuthProvider>
+  );
+};
 
 export default App;
