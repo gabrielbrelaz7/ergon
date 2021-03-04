@@ -15,6 +15,7 @@ import { Register } from "./components/Register";
 import { Login } from "./components/Login";
 import { AuthProvider } from "./Contexts/AuthContext";
 import { PrivateRoute } from "./auth/PrivateRoute";
+import { Dashboard } from "./components/Dashboard";
 
 // import * as firebase from 'firebase';
 
@@ -52,9 +53,10 @@ const App = () => {
       <ChallengesProvider>
         <BrowserRouter>
           <div className="container-project-name">
-            <span>Ergonimic Focus</span>
+            <span>Ergon Focus</span>
           </div>
           <PrivateRoute exact path="/" component={HomePage} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
         </BrowserRouter>

@@ -17,15 +17,17 @@ export const ChallengeBox = () => {
   const { activeChallenge, resetChallenge, completeChallenge } = useContext(
     ChallengesContext
   );
-  const { resetCoutDown } = useContext(TimerContext);
+  const { restartCoutDown } = useContext(TimerContext);
+
 
   function handleChallengeSuccessed() {
     completeChallenge();
-    resetCoutDown();
+    restartCoutDown();
   }
 
   function handleChallengeFailed() {
     resetChallenge();
+    restartCoutDown();
   }
 
   return (
@@ -46,11 +48,11 @@ export const ChallengeBox = () => {
             </span>
           </div>
           <div className="container-btns">
-            <Button onClick={handleChallengeFailed} color="red" text="Falhei" />
+            <Button onClick={handleChallengeFailed} color="red" text="Failed" />
             <Button
               onClick={handleChallengeSuccessed}
               color="green"
-              text="Completei"
+              text="Completed"
             />
           </div>
         </>

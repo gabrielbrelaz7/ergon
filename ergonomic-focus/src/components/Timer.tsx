@@ -9,27 +9,25 @@ import { TimerContext } from "../Contexts/TimerContext";
 export const Timer = () => {
 
     const {
-        hours,
-        minutes,
-        seconds,
         focusHours,
         focusMinutes,
         focusSeconds,
         hasFinished,
         resetCoutDown,
         isActiveFocus,
-        startCoutDown
+        startCoutDown,
+        restartCoutDown
     } = useContext(TimerContext);
 
-    const [hourLeft, hourRight] = String(hours)
-        .padStart(2, '0')
-        .split('')
-    const [minuteLeft, minuteRight] = String(minutes)
-        .padStart(2, '0')
-        .split('')
-    const [secondLeft, secondRight] = String(seconds)
-        .padStart(2, '0')
-        .split('')
+    // const [hourLeft, hourRight] = String(hours)
+    //     .padStart(2, '0')
+    //     .split('')
+    // const [minuteLeft, minuteRight] = String(minutes)
+    //     .padStart(2, '0')
+    //     .split('')
+    // const [secondLeft, secondRight] = String(seconds)
+    //     .padStart(2, '0')
+    //     .split('')
 
     const [hourLeftFocus, hourRightFocus] = String(focusHours)
         .padStart(2, '0')
@@ -59,9 +57,9 @@ export const Timer = () => {
                     hasFinished
                         ? (
                             <Button
-                                onClick={resetCoutDown}
+                                onClick={restartCoutDown}
                                 color="blue"
-                                text={"Ciclo encerrado"}
+                                text={"Continue focus time"}
                                 icon={<RightArrow />
 }/>
                         )
@@ -77,7 +75,7 @@ export const Timer = () => {
                                             <Button
                                                 onClick={resetCoutDown}
                                                 color="blue"
-                                                text={"Encerrar o ciclo"}
+                                                text={"End focus time"}
                                                 icon={<RightArrow />
 }/>
 
@@ -85,7 +83,7 @@ export const Timer = () => {
                                         : <Button
                                                 onClick={startCoutDown}
                                                 color="blue"
-                                                text={"Iniciar um ciclo"}
+                                                text={"Start focus time"}
                                                 icon={<RightArrow />
 }/>
                                 }

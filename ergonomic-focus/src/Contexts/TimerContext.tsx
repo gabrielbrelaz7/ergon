@@ -11,8 +11,9 @@ interface TimerContextData {
     focusSeconds: number;
     focusHours: number;
     hasFinished: boolean;
-    isActive: boolean
-    isActiveFocus: boolean
+    isActive: boolean;
+    isActiveFocus: boolean;
+    restartCoutDown: () => void;
     startCoutDown: () =>void;
     resetCoutDown: () => void;
 
@@ -59,6 +60,11 @@ export function TimerProvider({ children } : TimerProvidersProps) {
                 const minutes = now.getMinutes();
                 const seconds = now.getSeconds();
 
+        
+        function restartCoutDown() {
+            setHasFinished(false);
+            setIsActiveFocus(true);
+        }
 
         function startCoutDown() {
             setIsActive(true);
@@ -94,7 +100,6 @@ export function TimerProvider({ children } : TimerProvidersProps) {
         }
 
         const [timeSecond, setTimeSecond] = useState(seconds)
-
 
         useEffect(() => {
     
@@ -134,10 +139,9 @@ export function TimerProvider({ children } : TimerProvidersProps) {
                     setTimeFocus(timeFocus + 1)
                 }, 1000)
 
-                if (isActiveFocus && 
-                    timeFocus === 5 || 
-                    timeFocus === 10 || 
-                    timeFocus === 15 ) {
+                if (isActiveFocus && (timeFocus === 5 
+                    || timeFocus === 10 
+                    || timeFocus === 15)) {
                     setHasFinished(true);
                     setIsActiveFocus(false);
                     startNewChallenge();
@@ -164,6 +168,7 @@ export function TimerProvider({ children } : TimerProvidersProps) {
             isActiveFocus,
             startCoutDown, 
             resetCoutDown,
+            restartCoutDown,
             
         }}>
 

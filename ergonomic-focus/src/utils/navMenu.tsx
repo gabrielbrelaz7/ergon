@@ -10,7 +10,7 @@ export const navMenu = () => {
                 Timer Focus
             </div>
             <div>
-                <button onClick={authConfig.auth().signOut}>Login/Logout</button>
+                <button onClick={authConfig.auth().signOut}>Logout</button>
             </div>
         </div>
     );
