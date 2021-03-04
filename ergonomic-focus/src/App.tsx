@@ -35,9 +35,9 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div className="card">
+            
               <ChallengeBox />
-            </div>
+            
           </div>
         </div>
         <ComponentExample />

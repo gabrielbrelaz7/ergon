@@ -53,29 +53,7 @@ export const Timer = () => {
         <div>
 
             <div>
-                <div className="timer-container">
-                    <div className="container-numbers">
-                        <div className="number">{hourLeft}</div>
-                        <div className="divisor"/>
-                        <div className="number">{hourRight}</div>
-                    </div>
-                    <div className="container-middle">
-                        <div className="number">:</div>
-                    </div>
-                    <div className="container-numbers">
-                        <div className="number">{minuteLeft}</div>
-                        <div className="divisor"/>
-                        <div className="number">{minuteRight}</div>
-                    </div>
-                    <div className="container-middle">
-                        <div className="number">:</div>
-                    </div>
-                    <div className="container-numbers">
-                        <div className="number">{secondLeft}</div>
-                        <div className="divisor"/>
-                        <div className="number">{secondRight}</div>
-                    </div>
-                </div>
+                
 
                 {
                     hasFinished

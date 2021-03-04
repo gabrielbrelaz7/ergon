@@ -65,3 +65,40 @@
   height: 50px;
   width: 49%;
 }
+
+.container-challenge-not-active {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+}
+
+.container-not-active-title,
+.container-not-active-icon,
+.container-not-active-subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 33%;
+}
+
+.not-active-title {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 34px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: var(--grey-title);
+}
+
+.not-active-subtitle {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: var(--grey-title);
+}
