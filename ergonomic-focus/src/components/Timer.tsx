@@ -9,9 +9,9 @@ import { TimerContext } from "../Contexts/TimerContext";
 export const Timer = () => {
 
     const {
-        hours,
-        minutes,
-        seconds,
+        // hours,
+        // minutes,
+        // seconds,
         focusHours,
         focusMinutes,
         focusSeconds,
@@ -21,15 +21,15 @@ export const Timer = () => {
         startCoutDown
     } = useContext(TimerContext);
 
-    const [hourLeft, hourRight] = String(hours)
-        .padStart(2, '0')
-        .split('')
-    const [minuteLeft, minuteRight] = String(minutes)
-        .padStart(2, '0')
-        .split('')
-    const [secondLeft, secondRight] = String(seconds)
-        .padStart(2, '0')
-        .split('')
+    // const [hourLeft, hourRight] = String(hours)
+    //     .padStart(2, '0')
+    //     .split('')
+    // const [minuteLeft, minuteRight] = String(minutes)
+    //     .padStart(2, '0')
+    //     .split('')
+    // const [secondLeft, secondRight] = String(seconds)
+    //     .padStart(2, '0')
+    //     .split('')
 
     const [hourLeftFocus, hourRightFocus] = String(focusHours)
         .padStart(2, '0')
