@@ -1,3 +1,4 @@
+import React from 'react';
 import { authConfig } from "../auth/config";
 
 export const navMenu = () => {

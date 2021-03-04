@@ -36,40 +36,38 @@ export const ComponentExample = () => (
       </div>
       <div className="card">
         <div className="container-title">
-          <span className="card-title-exp">Ganhe 400 xp</span>
+          <span className="card-title-exp">Earn 400 xp</span>
         </div>
         <div>
           <ExerciseIcon />
         </div>
         <div className="container-info-card">
-          <span className="info-card-title">Exercite-se </span>
+          <span className="info-card-title">Work out </span>
           <span className="info-card-info">
-            É agora Diegão, bora lá meu parça. Caminhe por 3 minutos e estique
-            suas pernas pra você ficar saudável.
+            Walk for 3 minutes and stretch your legs to stay healthy.
           </span>
         </div>
         <div className="container-btns">
-          <Button onClick={() => {}} color="red" text="Falhei" />
-          <Button onClick={() => {}} color="green" text="Completei" />
+          <Button onClick={() => {}} color="red" text="Failed" />
+          <Button onClick={() => {}} color="green" text="Completed" />
         </div>
       </div>
       <div className="card">
         <div className="container-title">
-          <span className="card-title-exp">Ganhe 400 xp</span>
+          <span className="card-title-exp">Earn 400 xp</span>
         </div>
         <div>
           <EyeIcon />
         </div>
         <div className="container-info-card">
-          <span className="info-card-title">Mova os olhos </span>
+          <span className="info-card-title">Move your eyes </span>
           <span className="info-card-info">
-            É agora Diegão, bora lá meu parça. Caminhe por 3 minutos e estique
-            suas pernas pra você ficar saudável.
+            Walk for 3 minutes and stretch your legs to stay healthy.
           </span>
         </div>
         <div className="container-btns">
-          <Button onClick={() => {}} color="red" text="Falhei" />
-          <Button onClick={() => {}} color="green" text="Completei" />
+          <Button onClick={() => {}} color="red" text="Failed" />
+          <Button onClick={() => {}} color="green" text="Completed" />
         </div>
       </div>
     </div>

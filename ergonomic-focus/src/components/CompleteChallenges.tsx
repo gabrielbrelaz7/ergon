@@ -10,7 +10,7 @@ export const CompleteChallenges = () => {
 
   return (
 <div className="challenges-number-container">
-              <span>Complete challenges</span>
+              <span>Completed challenges</span>
               <span>{challengesCompleted}</span>
             </div>
 
