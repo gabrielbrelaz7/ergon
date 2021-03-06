@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { authConfig } from "../auth/config";
 import { AuthContext } from "./AuthContext";
 import { ChallengesContext } from "./ChallengesContext";

@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import "../styles/components/timer.css";
 import "../styles/components/button.css";
 import {ReactComponent as RightArrow} from "../assets/images/right-arrow-icon.svg";
+import { ReactComponent as CloseIcon } from "../assets/images/close-icon.svg";
 import {Button} from "./Button";
 import { TimerContext } from "../Contexts/TimerContext";
 
@@ -98,16 +99,15 @@ export const Timer = () => {
 
                                             <Button
                                                 onClick={resetCoutDown}
-                                                color="blue"
-                                                text={"Encerrar o ciclo"}
-                                                icon={<RightArrow />
-}/>
+                                                color="white"
+                                                text={"End cycle"}
+                                                icon={<CloseIcon />}/>
 
                                         )
                                         : <Button
                                                 onClick={startCoutDown}
                                                 color="blue"
-                                                text={"Iniciar um ciclo"}
+                                                text={"Start cycle"}
                                                 icon={<RightArrow />
 }/>
                                 }

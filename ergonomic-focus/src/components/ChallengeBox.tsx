@@ -8,7 +8,7 @@ import "../styles/components/component-examples.css";
 import {ReactComponent as ExerciseIcon} from "../assets/images/exercise-icon.svg";
 // import { ReactComponent as EyeIcon } from "../assets/images/eye-icon.svg";
 import {Button} from "./Button";
-import {useContext} from "react";
+import React, {useContext} from "react";
 import {ChallengesContext} from "../Contexts/ChallengesContext";
 import { TimerContext } from "../Contexts/TimerContext";
 
@@ -40,22 +40,22 @@ export const ChallengeBox = () => {
                             <div>
 
                                 <div className="container-title">
-                                    <span className="card-title-exp">Ganhe {activeChallenge.amount}
+                                    <span className="card-title-exp">Earn {activeChallenge.amount}
                                         xp</span>
                                 </div>
                                 <div>
                                     <ExerciseIcon/>
                                 </div>
                                 <div className="container-info-card">
-                                    <span className="info-card-title">Exercite-se
+                                    <span className="info-card-title">Work out
                                     </span>
                                     <span className="info-card-info">
                                         {activeChallenge.description}
                                     </span>
                                 </div>
                                 <div className="container-btns">
-                                    <Button onClick={handleChallengeFailed} color="red" text="Falhei"/>
-                                    <Button onClick={handleChallengeSuccessed} color="green" text="Completei"/>
+                                    <Button onClick={handleChallengeFailed} color="red" text="Failed"/>
+                                    <Button onClick={handleChallengeSuccessed} color="green" text="Completed"/>
                                 </div>
 
                             </div>
