@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { ExperienceBar } from "./components/ExperienceBar";
 import { Profile } from "./components/Profile";
@@ -8,18 +8,19 @@ import { Timer } from "./components/Timer";
 import "./styles/global.css";
 import { ComponentExample } from "./components/ComponentExamples";
 import { ChallengeBox } from "./components/ChallengeBox";
-import { ChallengesProvider } from "./Contexts/ChallengesContext";
+import { ChallengesContext, ChallengesProvider } from "./Contexts/ChallengesContext";
 import { TimerProvider } from "./Contexts/TimerContext";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Register } from "./components/Register";
 import { Login } from "./components/Login";
-import { AuthProvider } from "./Contexts/AuthContext";
+import { AuthContext, AuthProvider } from "./Contexts/AuthContext";
 import { PrivateRoute } from "./auth/PrivateRoute";
 import { Dashboard } from "./components/Dashboard";
+import { authConfig } from "./auth/config";
 
-// import * as firebase from 'firebase';
 
 const HomePage = () => {
+
   return (
     <TimerProvider>
       <div>

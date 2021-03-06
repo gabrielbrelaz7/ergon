@@ -15,6 +15,7 @@ interface AuthProviderProps {
 export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
+  
   const [user, setUserAuth] = useState({} as AuthContextData);
   const [waiting, setWaiting] = useState(true);
 

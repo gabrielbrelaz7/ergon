@@ -85,7 +85,7 @@ export function TimerProvider({ children } : TimerProvidersProps) {
         const datetime = (hours + ":" + minutes)
 
 
-        const insertDB = {
+        const insertDBTimer = {
             username: user.email,
             datetimeStart: datetime,
             datetimeEnd: "",
@@ -93,9 +93,9 @@ export function TimerProvider({ children } : TimerProvidersProps) {
         };
 
 
-        authConfig.database().ref(`timerDay/${btoa(insertDB.username)}`)
+        authConfig.database().ref(`timerDay/${btoa(insertDBTimer.username)}`)
 
-        .push(insertDB)
+        .push(insertDBTimer)
 
         }
 
