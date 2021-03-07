@@ -62,3 +62,22 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
+
+.container-project-name {
+  position: absolute;
+  top: 15vh;
+  left: 50px;
+  transform-origin: 0 0;
+  transform: rotate(90deg);
+}
+
+.container-project-name span {
+  font-size: 50px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--main-bg-color);
+  color: #cdcfd4;
+  padding: 5px 10px;
+  margin: 0 0 10px 0;
+  line-height: 24px;
+}

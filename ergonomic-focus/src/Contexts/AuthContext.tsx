@@ -1,51 +1,53 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 import { authConfig } from "../auth/config";
-
+import { Loading } from "../components/Loading";
 
 interface AuthContextData {
-    user: any;
+  user: any;
 }
-
 
 type NewType = ReactNode;
 
-interface AuthProviderProps{
-    children: NewType;
+interface AuthProviderProps {
+  children: NewType;
 }
 
 export const AuthContext = createContext({} as AuthContextData);
 
-export function AuthProvider({ children } : AuthProviderProps) {
+export function AuthProvider({ children }: AuthProviderProps) {
+  const [user, setUserAuth] = useState({} as AuthContextData);
+  const [waiting, setWaiting] = useState(true);
 
+  useEffect(() => {
+    authConfig.auth().onAuthStateChanged((user: any) => {
+      setUserAuth(user);
+      setWaiting(false);
+    });
+  }, []);
 
-    const [user, setUserAuth] = useState({} as AuthContextData);
-    const [waiting, setWaiting] = useState(true);
+  if (waiting) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+          width: "100%",
+        }}
+      >
+        <Loading />
+      </div>
+    );
+  }
 
-
-    useEffect(() => {
-
-        authConfig.auth().onAuthStateChanged((user:any) => {
-            setUserAuth(user);
-            setWaiting(false)
-        });
-
-    }, []);
-
-    if (waiting) {
-        return <div>Loading</div>
-    }
-
-    return(
-
-        <AuthContext.Provider 
-            value={{
-                user,
-                }}>
-        
-                {children}
-        
-        </AuthContext.Provider>
-        
-        );
-
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
