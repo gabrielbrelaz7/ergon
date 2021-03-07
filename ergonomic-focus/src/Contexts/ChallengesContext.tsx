@@ -1,5 +1,8 @@
-import {createContext, ReactNode, useEffect, useState} from 'react';
+import {createContext, ReactNode, useContext, useEffect, useState} from 'react';
+import { authConfig } from '../auth/config';
 import challenges from '../utils/challenges.json';
+import { AuthContext } from './AuthContext';
+import { DashboardContext } from './DashboardContext';
 
 
 interface Challenge {
@@ -10,11 +13,8 @@ interface Challenge {
 
 
 interface ChallengesContextData {
-    level: number;
-    currentExperience: number;
-    experienceToNextLevel: number;  
-    challengesCompleted:  number;
-    LevelUp: () => void;
+    experienceToNextLevel: number;
+    currentExperience: number;  
     startNewChallenge: () => void;
     activeChallenge: Challenge;
     resetChallenge: () => void;
@@ -30,23 +30,67 @@ export const ChallengesContext = createContext({} as ChallengesContextData);
 
 const allChallenges = challenges as Challenge[];
 
-
 export function ChallengesProvider({ children } : ChallengesProvidersProps) {
 
-const [level, setLevel] = useState(1);
-const [currentExperience, setCurrentExperience] = useState(0);
-const [challengesCompleted, setChallengesCompleted] = useState(0);
+const {experienceNow, experienceToNextLevel, levelNow, challengesNow} = useContext(DashboardContext)
+
+const {user} = useContext(AuthContext)
+
 const [activeChallenge, setActiveChallenge] = useState<Challenge>({} as Challenge);
 
-const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
+const [currentExperience, setCurrentExperience] = useState(0);
+
 
 useEffect(() =>{
     Notification.requestPermission();
 },[]
 )
 
-function LevelUp() {
-    setLevel(level + 1);
+function LevelUp(amount: number) {
+    
+    
+    let  finalExperience = experienceNow + amount;
+
+        const experienceUp = finalExperience 
+
+        const challengesUp = challengesNow + 1;
+
+        const levelUp = levelNow + 1; 
+
+
+        const insertDashboard = {
+            challengesCompleted: challengesUp,
+            username: user.email,
+            level: levelUp,
+            experience: experienceUp,
+        };
+
+        authConfig
+            .database()
+            .ref(`dashboard/${btoa(insertDashboard.username)}`)
+            .set(insertDashboard)
+}
+
+
+function updateBD(amount: number) {
+
+        let  finalExperience = experienceNow + amount;
+
+        const experienceUp = experienceNow + finalExperience 
+
+        const challengesUp = challengesNow + 1;
+
+        const insertDashboard = {
+            challengesCompleted: challengesUp,
+            username: user.email,
+            level: levelNow,
+            experience: experienceUp,
+        };
+
+        authConfig
+            .database()
+            .ref(`dashboard/${btoa(insertDashboard.username)}`)
+            .set(insertDashboard)
 }
 
 function startNewChallenge() {
@@ -77,13 +121,23 @@ function completeChallenge() {
     let  finalExperience = currentExperience + amount;
 
     if (finalExperience >= experienceToNextLevel) {
-        finalExperience = finalExperience - experienceToNextLevel;
-        LevelUp();
+        
+        finalExperience = finalExperience - experienceToNextLevel
+
+        setCurrentExperience(finalExperience);
+
+        LevelUp(amount);   
     }
 
-    setCurrentExperience(finalExperience);
+    else {
+
+        setCurrentExperience(finalExperience);
+
+        updateBD(amount);
+    }
+    
+
     setActiveChallenge({} as Challenge);
-    setChallengesCompleted(challengesCompleted + 1)
 
 }
 
@@ -91,15 +145,12 @@ return(
 
 <ChallengesContext.Provider 
 value={{
-    level, 
-    currentExperience, 
-    challengesCompleted,
-    LevelUp,
     startNewChallenge,
     activeChallenge,
     resetChallenge, 
     experienceToNextLevel,
-    completeChallenge
+    completeChallenge,
+    currentExperience,
     }}>
 
     {children}

@@ -4,51 +4,15 @@ import { ReactComponent as Up } from "../assets/images/up-icon.svg";
 import { ChallengesContext } from "../Contexts/ChallengesContext";
 import { AuthContext } from "../Contexts/AuthContext";
 import { authConfig } from "../auth/config";
+import { DashboardContext } from "../Contexts/DashboardContext";
 
 
 export const Profile = () => {
 
-  const {challengesCompleted, level, currentExperience} = useContext(ChallengesContext);
+//   const {challengesCompleted, level, currentExperience} = useContext(ChallengesContext);
   const {user} = useContext(AuthContext);
+  const {levelNow} = useContext(DashboardContext);
 
-
-  const [levelNow, setLevel] = useState(level)
-
-  useEffect(() => {
-
-  authConfig
-    .database()
-    .ref(`dashboard/${btoa(user.email)}`)
-    .on(('value'), (snapshot) => {
-        const userData = snapshot.val();
-
-        for(let data in userData) {
-
-          const levelNow = userData[data].level
-
-          setLevel(levelNow)
-                  
-        }
-
-        if (snapshot.val() === null) {
-
-            const insertDashboard = {
-                challengesCompleted: challengesCompleted,
-                username: user.email,
-                level: level,
-                experience: currentExperience
-            };
-
-            authConfig
-                .database()
-                .ref(`dashboard/${btoa(insertDashboard.username)}`)
-                .push(insertDashboard)
-
-        }
-
-  })
-
-}, []);
 
   return (
     <div className="container-user-info">

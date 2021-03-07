@@ -8,6 +8,7 @@ interface DashboardContextData {
     challengesNow: number,
     levelNow: number,
     experienceNow : number,
+    experienceToNextLevel: number,
 }
 
 type NewType = ReactNode;
@@ -18,20 +19,28 @@ interface DashboardProviderProps {
 
 export const DashboardContext= createContext({} as DashboardContextData);
 
-
 export function DashboardProvider({ children }: DashboardProviderProps) {
 
-
-    const {challengesCompleted, level, currentExperience} = useContext(ChallengesContext);
 
     const {user} = useContext(AuthContext);
 
     
-    const [levelNow, setLevel] = useState(level)
-    const [experienceNow, setExperience] = useState(challengesCompleted)
-    const [challengesNow, setChallenges] = useState(currentExperience)
+    const [levelNow, setLevel] = useState(1)
+    const [experienceNow, setExperience] = useState(0)
+    const [challengesNow, setChallenges] = useState(0)
+    
+
+    const experienceToNextLevel = Math.pow((levelNow + 1) * 4, 2)
 
   useEffect(() => {
+
+    let levelNow = 1
+    let experienceNow = 0
+    let challengesNow = 0
+
+    setLevel(levelNow)
+    setExperience(experienceNow)
+    setChallenges(challengesNow)
 
   authConfig
     .database()
@@ -39,27 +48,29 @@ export function DashboardProvider({ children }: DashboardProviderProps) {
     .on(('value'), (snapshot) => {
         const userData = snapshot.val();
 
-        for(let data in userData) {
+        if (userData !== null || (experienceNow > 0 && challengesNow > 0)) {
 
-          const levelNow = userData[data].level
-          const experienceNow = userData[data].experience
-          const challengesNow = userData[data].challenges
+          console.log("Entrando ")
 
+            let levelNow = userData.level
+            let experienceNow = userData.experience
+            let challengesNow = userData.challengesCompleted
 
-          setLevel(levelNow)
-          setExperience(experienceNow)
-          setChallenges(challengesNow)
+            setLevel(levelNow)
+            setExperience(experienceNow)
+            setChallenges(challengesNow)
 
-                  
         }
 
-        if (snapshot.val() === null) {
+        if (userData === null) {
+
+          console.log("Inserindo dados no Firebase")
 
             const insertDashboard = {
-                challengesCompleted: challengesCompleted,
+                challengesCompleted: challengesNow,
                 username: user.email,
-                level: level,
-                experience: currentExperience
+                level: levelNow,
+                experience: experienceNow
             };
 
             authConfig
@@ -79,6 +90,7 @@ export function DashboardProvider({ children }: DashboardProviderProps) {
             challengesNow,
             experienceNow,
             levelNow,
+            experienceToNextLevel,
           }}
         >
           {children}

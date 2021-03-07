@@ -8,9 +8,6 @@ import { TimerContext } from "../Contexts/TimerContext";
 
 export const Timer = () => {
   const {
-    // hours,
-    // minutes,
-    // seconds,
     focusHours,
     focusMinutes,
     focusSeconds,
@@ -18,6 +15,7 @@ export const Timer = () => {
     resetCoutDown,
     isActiveFocus,
     startCoutDown,
+    restartCoutDown
   } = useContext(TimerContext);
 
   // const [hourLeft, hourRight] = String(hours)
@@ -70,9 +68,9 @@ export const Timer = () => {
       <div>
         {hasFinished ? (
           <Button
-            onClick={resetCoutDown}
+            onClick={restartCoutDown}
             color="white-greenb"
-            text={"Cycle closed"}
+            text={"Continue focus time"}
             icon={<CheckIcon />}
           />
         ) : (
@@ -81,14 +79,14 @@ export const Timer = () => {
               <Button
                 onClick={resetCoutDown}
                 color="blue"
-                text={"Encerrar o ciclo"}
+                text={"End focus time"}
                 icon={<RightArrow />}
               />
             ) : (
               <Button
                 onClick={startCoutDown}
                 color="blue"
-                text={"Iniciar um ciclo"}
+                text={"Start focus time"}
                 icon={<RightArrow />}
               />
             )}

@@ -52,13 +52,13 @@ export function TimerProvider({ children } : TimerProvidersProps) {
     const [isActive, setIsActive] = useState(false)
 
 
-                // Timer Now
+        // Timer Now
 
-                const now = new Date();
+        const now = new Date();
 
-                const hours = now.getHours();
-                const minutes = now.getMinutes();
-                const seconds = now.getSeconds();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
 
         
         function restartCoutDown() {
@@ -84,18 +84,16 @@ export function TimerProvider({ children } : TimerProvidersProps) {
         const date = (moth + "/" + day + "/" + year)
         const datetime = (hours + ":" + minutes)
 
+        // const insertDBTimer = {
+        //     username: user.email,
+        //     datetimeStart: datetime,
+        //     datetimeEnd: "",
+        //     date: date,
+        //     time: timeFocus,
+        // };
 
-        const insertDBTimer = {
-            username: user.email,
-            datetimeStart: datetime,
-            datetimeEnd: "",
-            date: date,
-        };
 
-
-        authConfig.database().ref(`timerDay/${btoa(insertDBTimer.username)}`)
-
-        .push(insertDBTimer)
+        // authConfig.database().ref(`timerDate/${btoa(insertDBTimer.username)}`).push(insertDBTimer)
 
         }
 
@@ -121,16 +119,18 @@ export function TimerProvider({ children } : TimerProvidersProps) {
             clearTimeout(countDownTimeOut);
             setIsActiveFocus(false);
             setHasFinished(false);
-
+            
             const hours = now.getHours();
             const minutes = now.getMinutes();
             const datetime = (hours + ":" + minutes)
 
-            console.log(user)
+            console.log(user.email)
             console.log(datetime)
 
-        }
 
+            setTimeFocus(0);
+
+        }
     
         useEffect(() => {
     

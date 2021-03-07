@@ -17,39 +17,48 @@ import { AuthContext, AuthProvider } from "./Contexts/AuthContext";
 import { PrivateRoute } from "./auth/PrivateRoute";
 import { Dashboard } from "./components/Dashboard";
 import { authConfig } from "./auth/config";
+import { DashboardProvider } from "./Contexts/DashboardContext";
 
 
 const HomePage = () => {
 
   return (
-    <TimerProvider>
-      <div>
-        <div className="container">
-          <ExperienceBar />
-          <div className="container-content">
-            <div className="card invisible">
-              <div className="container-info">
-                <Profile />
 
-                <CompleteChallenges />
 
-                <Timer />
+    <DashboardProvider>
+      
+      <ChallengesProvider>
+      <TimerProvider>
+        <div>
+          <div className="container">
+            <ExperienceBar />
+            <div className="container-content">
+              <div className="card invisible">
+                <div className="container-info">
+                  <Profile />
+
+                  <CompleteChallenges />
+
+                  <Timer />
+                </div>
               </div>
+              
+                <ChallengeBox />
+              
             </div>
-
-            
-              <ChallengeBox />
-            
           </div>
+          <ComponentExample />
         </div>
-        <ComponentExample />
-      </div>
-    </TimerProvider>
+      </TimerProvider>
+      </ChallengesProvider>
+
+    </DashboardProvider>
   );
 };
 
 const App = () => {
   return (
+    
     <AuthProvider>
       <ChallengesProvider>
         <BrowserRouter>
