@@ -15,10 +15,25 @@ import { Register } from "./components/Register";
 import { Login } from "./components/Login";
 import { AuthProvider } from "./Contexts/AuthContext";
 import { PrivateRoute } from "./auth/PrivateRoute";
+import { Dashboard } from "./components/Dashboard";
+import { authConfig } from "./auth/config";
 
 // import * as firebase from 'firebase';
 
-const HomePage = () => {
+type HomePageProps = {
+  history: {
+    push: (pathname: string) => void;
+  };
+};
+
+const HomePage = ({ history: { push } }: HomePageProps) => {
+  const handleLogout = () => {
+    authConfig
+      .auth()
+      .signOut()
+      .then(() => {})
+      .catch(() => {});
+  };
   return (
     <TimerProvider>
       <div>
@@ -27,7 +42,10 @@ const HomePage = () => {
           <div className="container-content">
             <div className="card invisible">
               <div className="container-info">
-                <Profile />
+                <Profile
+                  onClickDashboard={() => push("/dashboard")}
+                  onClickLogOut={handleLogout}
+                />
 
                 <CompleteChallenges />
 
@@ -35,9 +53,7 @@ const HomePage = () => {
               </div>
             </div>
 
-            
-              <ChallengeBox />
-            
+            <ChallengeBox />
           </div>
         </div>
         <ComponentExample />
@@ -52,11 +68,12 @@ const App = () => {
       <ChallengesProvider>
         <BrowserRouter>
           <div className="container-project-name">
-            <span>Ergonimic Focus</span>
+            <span>Ergonomic Focus</span>
           </div>
           <PrivateRoute exact path="/" component={HomePage} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/dashboard" component={Dashboard} />
         </BrowserRouter>
       </ChallengesProvider>
     </AuthProvider>

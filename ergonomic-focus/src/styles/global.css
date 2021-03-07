@@ -25,6 +25,21 @@ body {
   background-color: var(--main-bg-color);
 }
 
+.go-back-btn {
+  position: absolute;
+  left: 7vw;
+  top: 15vh;
+  display: flex;
+  align-items: center;
+  color: var(--grey-text);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.container-back-ico {
+  transform: rotate(-90deg);
+}
+
 .container-content {
   padding: 50px 0px;
   height: calc(100vh - 150px);

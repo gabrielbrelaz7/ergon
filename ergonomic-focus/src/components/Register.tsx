@@ -2,14 +2,25 @@ import React, { useCallback, useState } from "react";
 import { withRouter } from "react-router";
 import { authConfig } from "../auth/config";
 import "../styles/components/login.css";
+import { Loading } from "./Loading";
 
-export const Register = ({ history }: any) => {
+type RegisterProps = {
+  history: {
+    push: (pathname: string) => void;
+    goBack: () => void;
+  };
+};
+
+export const Register = ({ history }: RegisterProps) => {
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const registerUser = useCallback(
     async (event) => {
       event.preventDefault();
       setError("");
       const { email, password } = event.target.elements;
+      setIsLoading(true);
       try {
         await authConfig
           .auth()
@@ -18,6 +29,7 @@ export const Register = ({ history }: any) => {
       } catch (error) {
         setError(error.message);
       }
+      setIsLoading(false);
     },
     [history]
   );
@@ -44,6 +56,13 @@ export const Register = ({ history }: any) => {
           </div>
           <button className="submit-login" type="submit">
             Register
+            {isLoading && (
+              <Loading
+                width={20}
+                height={20}
+                containerSize={{ width: 20, height: 30 }}
+              />
+            )}
           </button>
           {!!error && <span className="error-message">{error}</span>}
         </form>

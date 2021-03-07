@@ -1,0 +1,30 @@
+.card.dashboard {
+  padding: 0px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.container-title {
+  font-size: 24px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.dashboard-title {
+  font-size: 20px;
+  line-height: 40px;
+}
+
+.container-title {
+  height: 50px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
