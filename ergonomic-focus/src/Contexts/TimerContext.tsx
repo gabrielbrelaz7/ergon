@@ -85,31 +85,29 @@ export function TimerProvider({ children } : TimerProvidersProps) {
                 .ref(`dashboard/${btoa(insertDashboard.username)}`)
                 .push(insertDashboard)
 
+                const now = new Date();
 
-        // Timer Now
+                const day = now.getDate();
+                const moth = now.getMonth()+1; 
+                const year = now.getFullYear();
 
-        // const now = new Date();
+                const hours = now.getHours();
+                const minutes = now.getMinutes();
 
-        // const day = now.getDate();
-        // const moth = now.getMonth()+1; 
-        // const year = now.getFullYear();
+                const date = (moth + "/" + day + "/" + year)
+                const datetime = (hours + ":" + minutes)
 
-        // const hours = now.getHours();
-        // const minutes = now.getMinutes();
+                const insertBD = (moth+ ":" + day + ":" + year)
 
-        // const date = (moth + "/" + day + "/" + year)
-        // const datetime = (hours + ":" + minutes)
-
-        // const insertDBTimer = {
-        //     username: user.email,
-        //     datetimeStart: datetime,
-        //     datetimeEnd: "",
-        //     date: date,
-        //     time: timeFocus,
-        // };
+                const insertDBTimer = {
+                    username: user.email,
+                    datetimeStart: datetime,
+                    dateStart: date,
+                    timeStart: timeFocus,
+                };
 
 
-        // authConfig.database().ref(`timerDate/${btoa(insertDBTimer.username)}`).push(insertDBTimer)
+                authConfig.database().ref(`${insertBD}/${btoa(insertDBTimer.username)}`).push(insertDBTimer)
 
         }
 
@@ -144,17 +142,22 @@ export function TimerProvider({ children } : TimerProvidersProps) {
             const hours = now.getHours();
             const minutes = now.getMinutes();
 
+            const datetime = (hours + ":" + minutes)
+
             const date = (moth + "/" + day + "/" + year)
-            // const datetime = (hours + ":" + minutes)
+
+            const insertBD = (moth+ ":" + day + ":" + year)
+
 
             const insertDBTimer = {
                 username: user.email,
-                date: date,
-                timer: timeFocus,
+                datetimeEnd: datetime,
+                dateEnd: date,
+                timerEnd: timeFocus,
             };
 
 
-            authConfig.database().ref(`timerDate/${btoa(insertDBTimer.username)}`).push(insertDBTimer)
+            authConfig.database().ref(`${insertBD}/${btoa(insertDBTimer.username)}`).push(insertDBTimer)
 
                 setTimeFocus(0);
         
