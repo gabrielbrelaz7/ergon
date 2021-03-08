@@ -35,16 +35,15 @@ export const ChallengeBox = () => {
       {Object.entries(activeChallenge).length !== 0 ? (
         <>
           <div className="container-title">
-            <span className="card-title-exp">Ganhe 400 xp</span>
+            <span className="card-title-exp">News {activeChallenge.amount}</span>
           </div>
           <div>
             <ExerciseIcon />
           </div>
           <div className="container-info-card">
-            <span className="info-card-title">Exercite-se </span>
+            {/* <span className="info-card-title">Exercite-se </span> */}
             <span className="info-card-info">
-              É agora Diegão, bora lá meu parça. Caminhe por 3 minutos e estique
-              suas pernas pra você ficar saudável.
+              {activeChallenge.description}
             </span>
           </div>
           <div className="container-btns">
@@ -60,7 +59,7 @@ export const ChallengeBox = () => {
         <div className="container-challenge-not-active">
           <div className="container-not-active-title">
             <span className="not-active-title">
-              Start to gettting challenges to be completed
+              Start to focus your work time 
             </span>
           </div>
           <div className="container-not-active-icon">
@@ -68,7 +67,7 @@ export const ChallengeBox = () => {
           </div>
           <div className="container-not-active-subtitle">
             <span className="not-active-subtitle">
-              Complete challenges and advance to the next level
+              Advance the news while work in focus to improve your work ergonomic and more
             </span>
           </div>
         </div>

@@ -25,9 +25,10 @@
   color: var(--secondary-blue);
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 25px;
   line-height: 30px;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .container-info-card {

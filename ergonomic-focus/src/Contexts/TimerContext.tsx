@@ -70,19 +70,35 @@ export function TimerProvider({ children } : TimerProvidersProps) {
             setIsActive(true);
             setIsActiveFocus(true);
 
+            console.log("Inserindo dados no Firebase")
+
+            const insertDashboard = {
+                challengesCompleted: 0,
+                username: user.email,
+                level: 1,
+                experience: 0,
+
+            };
+
+            authConfig
+                .database()
+                .ref(`dashboard/${btoa(insertDashboard.username)}`)
+                .push(insertDashboard)
+
+
         // Timer Now
 
-        const now = new Date();
+        // const now = new Date();
 
-        const day = now.getDate();
-        const moth = now.getMonth()+1; 
-        const year = now.getFullYear();
+        // const day = now.getDate();
+        // const moth = now.getMonth()+1; 
+        // const year = now.getFullYear();
 
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
+        // const hours = now.getHours();
+        // const minutes = now.getMinutes();
 
-        const date = (moth + "/" + day + "/" + year)
-        const datetime = (hours + ":" + minutes)
+        // const date = (moth + "/" + day + "/" + year)
+        // const datetime = (hours + ":" + minutes)
 
         // const insertDBTimer = {
         //     username: user.email,
@@ -106,43 +122,58 @@ export function TimerProvider({ children } : TimerProvidersProps) {
                     setTimeSecond(timeSecond + 1)
                 }, 1000)
             }
-    
-            // else if ( isActive &&) { }
-    
+        
         }, [isActive, timeSecond])
     
         function resetCoutDown() {
 
-            console.log(timeFocus);
+            // console.log(timeFocus);
 
             // setIsActive(false);
             clearTimeout(countDownTimeOut);
             setIsActiveFocus(false);
             setHasFinished(false);
             
+            
+            const now = new Date();
+
+            const day = now.getDate();
+            const moth = now.getMonth()+1; 
+            const year = now.getFullYear();
+
             const hours = now.getHours();
             const minutes = now.getMinutes();
-            const datetime = (hours + ":" + minutes)
 
-            console.log(user.email)
-            console.log(datetime)
+            const date = (moth + "/" + day + "/" + year)
+            // const datetime = (hours + ":" + minutes)
+
+            const insertDBTimer = {
+                username: user.email,
+                date: date,
+                timer: timeFocus,
+            };
 
 
-            setTimeFocus(0);
+            authConfig.database().ref(`timerDate/${btoa(insertDBTimer.username)}`).push(insertDBTimer)
 
+                setTimeFocus(0);
+        
         }
     
         useEffect(() => {
     
-            if (isActiveFocus && timeFocus < 20) {
+            if (isActiveFocus && timeFocus < 60) {
                 countDownTimeOut = setTimeout(() => {
                     setTimeFocus(timeFocus + 1)
                 }, 1000)
 
                 if (isActiveFocus && 
                     (timeFocus === 5 
-                    || timeFocus === 10 
-                    || timeFocus === 15)) {
+                    || timeFocus === 10
+                    || timeFocus === 15
+                    || timeFocus === 30
+                    || timeFocus === 45
+                    || timeFocus === 55)) {
                     setHasFinished(true);
                     setIsActiveFocus(false);
                     startNewChallenge();

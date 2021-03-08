@@ -6,7 +6,7 @@ import { DashboardContext } from './DashboardContext';
 
 
 interface Challenge {
-    type: 'body' | 'eye';
+    type: 'body' | 'eye' ;
     description: string;
     amount: number;
 }
@@ -72,26 +72,26 @@ function LevelUp(amount: number) {
 }
 
 
-function updateBD(amount: number) {
+// function updateBD(amount: number) {
 
-        let  finalExperience = experienceNow + amount;
+//         let  finalExperience = experienceNow + amount;
 
-        const experienceUp = experienceNow + finalExperience 
+//         const experienceUp = experienceNow + finalExperience 
 
-        const challengesUp = challengesNow + 1;
+//         const challengesUp = challengesNow + 1;
 
-        const insertDashboard = {
-            challengesCompleted: challengesUp,
-            username: user.email,
-            level: levelNow,
-            experience: experienceUp,
-        };
+//         const insertDashboard = {
+//             challengesCompleted: challengesUp,
+//             username: user.email,
+//             // level: levelNow,
+//             // experience: experienceUp,
+//         };
 
-        authConfig
-            .database()
-            .ref(`dashboard/${btoa(insertDashboard.username)}`)
-            .set(insertDashboard)
-}
+//         authConfig
+//             .database()
+//             .ref(`dashboard/${btoa(insertDashboard.username)}`)
+//             .set(insertDashboard)
+// }
 
 function startNewChallenge() {
     const randowChallengeIndex = Math.floor(Math.random() * allChallenges.length);
@@ -102,8 +102,8 @@ function startNewChallenge() {
     new Audio('/notification.mp3').play();
 
     if(Notification.permission === 'granted') {
-        new Notification('Novo desafio', {
-            body: `Valendo ${challenge.amount}xp!`
+        new Notification('Ergon Focus', {
+            body: `Take care your ergonomic`
         })
     }
 }
@@ -117,27 +117,29 @@ function completeChallenge() {
         return;
     }
 
-    const {amount} = activeChallenge;
-    let  finalExperience = currentExperience + amount;
+    // const {amount} = activeChallenge;
+    // let  finalExperience = currentExperience + amount;
 
-    if (finalExperience >= experienceToNextLevel) {
+    // if (finalExperience >= experienceToNextLevel) {
         
-        finalExperience = finalExperience - experienceToNextLevel
+    //     finalExperience = finalExperience - experienceToNextLevel
 
-        setCurrentExperience(finalExperience);
+    //     setCurrentExperience(finalExperience);
 
-        LevelUp(amount);   
-    }
+    //     LevelUp(amount);   
+    // }
 
-    else {
+    // else {
 
-        setCurrentExperience(finalExperience);
+    //     setCurrentExperience(finalExperience);
 
-        updateBD(amount);
-    }
+    //     updateBD(amount);
+    // }
     
 
     setActiveChallenge({} as Challenge);
+
+    
 
 }
 

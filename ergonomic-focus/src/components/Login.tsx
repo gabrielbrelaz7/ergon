@@ -3,15 +3,24 @@ import { Redirect, withRouter } from "react-router";
 import { authConfig } from "../auth/config";
 import { AuthContext } from "../Contexts/AuthContext";
 import "../styles/components/login.css";
+import { Loading } from "./Loading";
 
-export const Login = ({ history }: any) => {
+type LoginProps = {
+  history: {
+    push: (pathname: string) => void;
+  };
+};
+
+export const Login = ({ history }: LoginProps) => {
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const loginUser = useCallback(
     async (event) => {
       event.preventDefault();
       setError("");
       const { email, password } = event.target.elements;
-
+      setIsLoading(true);
       try {
         await authConfig
           .auth()
@@ -20,6 +29,7 @@ export const Login = ({ history }: any) => {
       } catch (error) {
         setError(error.message);
       }
+      setIsLoading(false);
     },
     [history]
   );
@@ -48,6 +58,13 @@ export const Login = ({ history }: any) => {
           </div>
           <button className="submit-login" type="submit">
             Sign In
+            {isLoading && (
+              <Loading
+                width={20}
+                height={20}
+                containerSize={{ width: 20, height: 30 }}
+              />
+            )}
           </button>
           {!!error && <span className="error-message">{error}</span>}
         </form>

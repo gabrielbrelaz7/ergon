@@ -7,7 +7,7 @@ import "../styles/components/experience-bar.css";
 
 export const ExperienceBar = () => {
 
-  const {experienceToNextLevel} = useContext(DashboardContext)
+  const {experienceToNextLevel, experienceNow} = useContext(DashboardContext)
 
   const {currentExperience} = useContext(ChallengesContext)
 
@@ -19,7 +19,7 @@ export const ExperienceBar = () => {
       <span>0 xp</span>
       <div className="experience-bar">
         <div className="bar">
-          <span className="current-experience">{currentExperience} xp</span>
+          <span className="current-experience">{experienceNow} xp</span>
         </div>
       </div>
       <span>{experienceToNextLevel} xp</span>

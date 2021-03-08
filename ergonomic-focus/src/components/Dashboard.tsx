@@ -1,41 +1,93 @@
-// import React, {useContext} from "react";
+import React, { useContext } from "react";
 import "../styles/components/dashboard.css";
-// import {ReactComponent as RightArrow} from "../assets/images/right-arrow-icon.svg";
-// import {Button} from "./Button";
+import { ReactComponent as HalfArrowIcon } from "../assets/images/half-arrow.svg";
+import { DashboardContext } from "../Contexts/DashboardContext";
+import { authConfig } from "../auth/config";
+import { AuthContext } from "../Contexts/AuthContext";
 
-export const Dashboard = () => {
+type DashboardProps = {
+  name: string;
+  userName: string;
+  email: string;
+  totalHours: string;
+  challengesCompleted: number;
+  history: {
+    goBack: () => void;
+  };
+};
 
-    return (
+export const Dashboard = ({
+  name = "name",
+  userName,
+  email,
+  totalHours,
+  challengesCompleted,
+  history: { goBack },
+}: DashboardProps) => {
 
-        <div>
-            <div>
-                <div>
-                    <div>Total time</div>
-                    <div>Challenges Completed</div>
-                </div>
 
-                <div>
-                    <div>900h</div>
-                    <div>45 challenges</div>
-                </div>
-            </div>
+  const {user} = useContext(AuthContext)
 
-            <div>
-                <div>Date</div>
-                <div>Start</div>
-                <div>End</div>
-                <div>Focus Time</div>
-            </div>
+  authConfig
+  .database()
+  .ref(`timerDate/${btoa(user.email)}`)
+  .on(('value'), (snapshot) => {
 
-            <div>
-                <div>03/24/2021</div>
-                <div>09:00</div>
-                <div>18:00</div>
-                <div>8h</div>
-            </div>
+
+      const userData = snapshot.val();
+
+      for(let data in userData) {
+
+        const challengesNow = userData[data].timer
+
+
+        addTimer(challengesNow);
+        
+
+      }
+
+      function addTimer(timers: number) {
+
+        const timerTotal = timers++
+
+        console.log(timerTotal)
+
+      }
+      
+
+      })
+
+  // const {} = useContext(DashboardContext)
+
+
+  return (
+    <div className="container">
+      <div onClick={() => goBack()} className="go-back-btn">
+        <div className="container-back-ico">
+          <HalfArrowIcon width="20" height="20" />
+        </div>
+        Go back
+      </div>
+      <div className="container-content">
+        <div className="card dashboard">
+          <div className="container-title">
+            <span>Focus Information</span>
+            {/* <span className="dashboard-title">{challengesNow}</span> */}
+
+          </div>
 
         </div>
-
-    );
-
+        <div className="card invisible dashboard">
+          <div className="container-title">
+            <span>Total Focus</span>
+          </div>
+          <div className="section">
+            <span className="dashboard-title">Name</span>
+            <span className="dashboard-subtitle">{name}</span>
+          </div>
+ 
+        </div>
+      </div>
+    </div>
+  );
 };
