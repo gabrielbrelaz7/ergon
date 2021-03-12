@@ -14,6 +14,8 @@ type ProfileProps = {
 
 export const Profile = ({ onClickDashboard, onClickLogOut }: ProfileProps) => {
   const {user} = useContext(AuthContext);
+  // const {challengesCompleted, level, currentExperience} = useContext(ChallengesContext);
+  const {levelNow} = useContext(DashboardContext);
 
   return (
     <>
@@ -32,11 +34,11 @@ export const Profile = ({ onClickDashboard, onClickLogOut }: ProfileProps) => {
         <div className="container-name-and-level">
           <span className="name">{user.email}</span>
           <div className="container-user-level">
-            {/* <Up /> */}
-            {/* <span className="user-level">Level {level}</span> / */}
-            {/* <div className="dashboard-button" onClick={onClickDashboard}>
+            <Up />
+            <span className="user-level">Level {levelNow}</span>
+            <div className="dashboard-button" onClick={onClickDashboard}>
               Dashboard
-            </div> */}
+            </div> 
           </div>
         </div>
       </div>

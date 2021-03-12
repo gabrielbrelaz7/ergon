@@ -71,7 +71,7 @@ export const Dashboard = ({
       <div className="container-content">
         <div className="card dashboard">
           <div className="container-title">
-            <span>Focus Information</span>
+            <span>History work log</span>
             {/* <span className="dashboard-title">{challengesNow}</span> */}
 
           </div>
@@ -79,11 +79,12 @@ export const Dashboard = ({
         </div>
         <div className="card invisible dashboard">
           <div className="container-title">
-            <span>Total Focus</span>
+            <span>Total focus time</span>
           </div>
           <div className="section">
-            <span className="dashboard-title">Name</span>
-            <span className="dashboard-subtitle">{name}</span>
+            <span className="dashboard-title">Profile</span>
+            <span className="dashboard-subtitle">Email</span>
+            <span className="dashboard-subtitle">Username</span>
           </div>
  
         </div>
